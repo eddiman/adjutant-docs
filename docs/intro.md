@@ -8,7 +8,7 @@ description: Overview of Adjutant, a persistent personal AI agent framework
 
 Adjutant is a persistent personal AI agent that runs on your machine and stays in contact with you through Telegram. You send it messages -- questions, commands, requests -- and it responds using an LLM with full awareness of your projects and priorities.
 
-**Version**: 2.0.0
+**Version**: 0.1.0
 
 ## What It Does
 
