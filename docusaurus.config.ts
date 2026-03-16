@@ -12,10 +12,10 @@ const config: Config = {
   },
 
   url: 'https://eddiman.github.io',
-  baseUrl: '/adjutant/',
+  baseUrl: '/adjutant-docs/',
 
   organizationName: 'eddiman',
-  projectName: 'adjutant',
+  projectName: 'adjutant-docs',
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
