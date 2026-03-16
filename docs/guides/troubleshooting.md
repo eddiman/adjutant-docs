@@ -102,6 +102,23 @@ Look for `[control] Emergency kill` entries.
 2. Check if jobs are enabled: `adjutant schedule list`
 3. Re-sync: `adjutant schedule sync`
 
+### "opencode not found on PATH" in cron
+
+Cron runs with a minimal `PATH` (`/usr/bin:/bin`), which typically excludes
+directories like `/opt/homebrew/bin` where `opencode` is installed. Adjutant
+snapshots your interactive shell's `PATH` when installing cron entries (via
+`adjutant schedule sync`), so re-syncing usually fixes this:
+
+```bash
+adjutant schedule sync
+```
+
+As a fallback, you can set `OPENCODE_BIN` to the absolute path of the binary:
+
+```bash
+export OPENCODE_BIN=/opt/homebrew/bin/opencode
+```
+
 ### macOS Full Disk Access
 
 On macOS, cron needs Full Disk Access to run scripts that access files outside standard directories.

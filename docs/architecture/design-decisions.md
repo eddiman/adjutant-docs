@@ -89,7 +89,7 @@ Loading all three every request is correct: the agent needs full context. But sp
 
 `kb_run()` supports two invocation modes:
 
-1. **Python CLI** (preferred): If `kb.yaml` declares `cli_module: "src.cli"`, `kb_run` invokes `.venv/bin/python -m src.cli --real <operation>` directly — no bash involved.
+1. **Python CLI** (preferred): If `kb.yaml` declares `cli_module: "src.cli"`, `kb_run` invokes `.venv/bin/python -m src.cli --real <operation>` directly — no bash involved. The KB path is passed via the `KB_DIR` environment variable and `cwd`, not as a CLI flag.
 2. **Bash script** (legacy fallback): If `cli_module` is absent, `kb_run` resolves `scripts/<operation>.sh` and runs it via `bash`.
 
 This dual-path design means KBs with a Python CLI (like `portfolio-kb`) need zero bash shims. Older KBs that only have shell scripts continue to work unchanged.
