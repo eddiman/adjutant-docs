@@ -189,6 +189,11 @@
 /* Ensure the mobile sidebar/dropdown stays above the 3D canvas */
 .navbar-sidebar {
   z-index: 400;
+  /* Docusaurus v4 compat: the sidebar is position:fixed inside a
+     position:sticky navbar whose height is only 60px. The sidebar
+     inherits that height and clips its children via overflow:hidden.
+     Force it to cover the full viewport so menu items are visible. */
+  height: 100vh;
 }
 
 .navbar-sidebar__backdrop {
