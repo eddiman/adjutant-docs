@@ -3,7 +3,6 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useColorMode} from '@docusaurus/theme-common';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -14,15 +13,9 @@ import styles from './index.module.css';
 
 function HeroContent() {
   const {siteConfig} = useDocusaurusContext();
-  const {colorMode, setColorMode} = useColorMode();
-  const isDarkMode = colorMode === 'dark';
-
-  const heroBg = isDarkMode ? '#0e1f3f' : '#f0f0f0';
-
   return (
     <section
-      className={styles.hero}
-      style={{background: heroBg, transition: 'background 0.6s ease'}}>
+      className={styles.hero}>
       {/* Left: text overlay */}
       <div className={styles.heroText}>
         <p className={styles.heroLabel}>Personal AI Agent Framework</p>
@@ -59,14 +52,7 @@ function HeroContent() {
           {() => {
             const WobblingScene =
               require('../components/WobblingScene').default;
-            return (
-              <WobblingScene
-                isDarkMode={isDarkMode}
-                onToggleTheme={() =>
-                  setColorMode(isDarkMode ? 'light' : 'dark')
-                }
-              />
-            );
+            return <WobblingScene />;
           }}
         </BrowserOnly>
       </div>

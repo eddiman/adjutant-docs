@@ -23,17 +23,11 @@ extend({Mesh, SphereGeometry, PointLight, AmbientLight});
 // Wrap MeshDistortMaterial for react-spring animation
 const AnimatedMaterial = a(MeshDistortMaterial);
 
-interface SceneProps {
-  isDarkMode: boolean;
-  onToggleTheme: () => void;
-}
-
 /**
  * The 3D scene containing the wobbling sphere, adapted for the Adjutant
- * color palette. Reads the current Docusaurus theme via props and adjusts
- * sphere / lighting colors accordingly.
+ * color palette. Always renders the dark-mode (blue) variant.
  */
-function Scene({isDarkMode, onToggleTheme}: SceneProps) {
+function Scene() {
   const sphere = useRef<THREE.Mesh>(null);
   const light = useRef<THREE.PointLight>(null);
   const [down, setDown] = useState(false);
@@ -72,27 +66,23 @@ function Scene({isDarkMode, onToggleTheme}: SceneProps) {
     }
   });
 
-  // Adjutant color palette
-  // Light mode: white sphere -> pink on hover, dark mode: blue sphere -> pink on hover
   const sphereColor = hovered
-    ? '#e48dbf' // pink accent on hover (both modes)
-    : isDarkMode
-      ? '#4670cc' // royal blue in dark mode
-      : '#d4ddff'; // light blue-white in light mode
+    ? '#e48dbf' // pink accent on hover
+    : '#4670cc'; // royal blue
 
   const [{wobble, coat, ambient, env, color}] = useSpring(
     {
       wobble: down ? 1.2 : hovered ? 1.05 : 1,
-      coat: isDarkMode && !hovered ? 0.04 : 1,
-      ambient: isDarkMode && !hovered ? 1.5 : 0.5,
-      env: isDarkMode && !hovered ? 0.4 : 1,
+      coat: !hovered ? 0.04 : 1,
+      ambient: !hovered ? 1.5 : 0.5,
+      env: !hovered ? 0.4 : 1,
       color: sphereColor,
       config: (n: string) =>
         n === 'wobble' && hovered
           ? {mass: 2, tension: 1000, friction: 10}
-          : undefined,
+          : {},
     },
-    [isDarkMode, hovered, down],
+    [hovered, down],
   );
 
   return (
@@ -115,7 +105,6 @@ function Scene({isDarkMode, onToggleTheme}: SceneProps) {
           onPointerDown={() => setDown(true)}
           onPointerUp={() => {
             setDown(false);
-            onToggleTheme();
           }}>
           <sphereGeometry args={[1, 64, 64]} />
           <AnimatedMaterial
@@ -132,7 +121,7 @@ function Scene({isDarkMode, onToggleTheme}: SceneProps) {
         <ContactShadows
           rotation={[Math.PI / 2, 0, 0]}
           position={[0, -1.6, 0]}
-          opacity={isDarkMode ? 0.8 : 0.4}
+          opacity={0.8}
           width={15}
           height={15}
           blur={2.5}
@@ -147,15 +136,12 @@ function Scene({isDarkMode, onToggleTheme}: SceneProps) {
  * The full Canvas wrapper. This component must only be rendered in the
  * browser (wrap with Docusaurus <BrowserOnly>).
  */
-export default function WobblingScene({
-  isDarkMode,
-  onToggleTheme,
-}: SceneProps) {
+export default function WobblingScene() {
   return (
     <Canvas
       dpr={[1, 2]}
       style={{width: '100%', height: '100%', background: 'transparent'}}>
-      <Scene isDarkMode={isDarkMode} onToggleTheme={onToggleTheme} />
+      <Scene />
       <OrbitControls
         enablePan={false}
         enableZoom={false}
