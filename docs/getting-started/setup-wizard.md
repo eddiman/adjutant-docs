@@ -16,7 +16,7 @@ adjutant setup
 
 The wizard has seven steps:
 
-1. **Prerequisites** -- verifies Python, OpenCode, and other dependencies
+1. **Prerequisites** -- verifies Python, LLM backend (OpenCode or Claude CLI), and other dependencies
 2. **Install path** -- confirms where Adjutant lives and creates the root marker
 3. **Identity** -- creates `soul.md` (personality), `heart.md` (priorities), and `registry.md` (projects)
 4. **Messaging** -- prompts for your Telegram bot token and chat ID, writes them to `.env`

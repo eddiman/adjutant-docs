@@ -14,14 +14,20 @@ Before installing, make sure you have:
 
 - **macOS or Linux**
 - **Python 3.11+** -- check with `python3 --version`
-- **[OpenCode](https://opencode.ai)** -- the AI runtime Adjutant uses for reasoning
+- **An LLM backend** -- either [OpenCode](https://opencode.ai) (with an API key) or [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) (with a Claude subscription)
 - **curl** -- installed by default on macOS and Linux
 
-Verify OpenCode is working:
+Verify your chosen backend is working:
 
 ```bash
+# If using OpenCode:
 opencode --version
+
+# If using Claude Code CLI:
+claude --version
 ```
+
+See [LLM Backends](/docs/guides/backends) for details on choosing between them.
 
 ## Install
 

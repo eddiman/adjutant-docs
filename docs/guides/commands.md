@@ -190,7 +190,10 @@ Dependencies:
   curl         OK (curl 8.4.0)
   jq           OK (jq-1.7)
   python3      OK (Python 3.12.0)
-  opencode     OK (opencode 0.3.1)
+
+LLM Backend:
+  Backend:     opencode                    # or "claude-cli"
+  Binary:      opencode OK (opencode 0.3.1)  # or "claude OK (1.0.x)"
 
 Optional:
   playwright   not installed (needed for screenshot)
@@ -202,7 +205,7 @@ Configuration:
   identity/heart.md    present
   identity/registry.md present
   news_config.json     present
-  opencode.json        present
+  opencode.json        present             # or .claude/settings.json for claude-cli
 
 State:
   Status: operational

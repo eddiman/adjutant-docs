@@ -98,8 +98,8 @@ async def cmd_mycommand(
 ```
 src/adjutant/
 ├── cli.py              # Click CLI (entry point)
-├── core/               # Shared: config, env, lockfiles, logging, model, opencode, paths
-├── lib/                # HTTP client, NDJSON parser
+├── core/               # Shared: backend, backend_opencode, backend_claude_cli, config, env, lockfiles, logging, model, opencode, paths
+├── lib/                # HTTP client, NDJSON parser, Claude JSON parser
 ├── lifecycle/          # start/stop/pause/kill, cron, update
 ├── observability/      # status, usage estimates, journal rotation
 ├── capabilities/       # KB, schedule, screenshot, search, vision, memory

@@ -38,7 +38,7 @@ Adjutant is built for developers and power users who want a personal AI assistan
 
 ## How It Works
 
-Adjutant runs as a background service. It polls the Telegram Bot API for messages, routes them through a backend-agnostic dispatcher, and responds via OpenCode-powered AI reasoning.
+Adjutant runs as a background service. It polls the Telegram Bot API for messages, routes them through a backend-agnostic dispatcher, and responds via LLM-powered AI reasoning (OpenCode or Claude Code CLI).
 
 ```
 You --> Telegram --> Adjutant Listener
@@ -47,7 +47,7 @@ You --> Telegram --> Adjutant Listener
                   /        \
             /command     natural language
               |               |
-         cmd_handlers    opencode_run (LLM)
+         cmd_handlers    backend.run() (LLM)
               |               |
             Reply        Agent Response
 ```
